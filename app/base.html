@@ -1,0 +1,61 @@
+<!-- {%load staticfiles%} -->
+<!DOCTYPE html>
+<html  id="particles">
+<head>
+  <meta charset="utf8" />
+  <title>{%block title%}AppBug{%endblock%}</title>
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script>
+  <script type='text/javascript' src='js/jquery.particleground.min.js'></script>
+  <script type='text/javascript' src='js/demo.js'></script>
+<!--   {%block head%}{%endblock%} -->
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="search-box">
+      <div class="tit1">
+        <p class="logon">贴吧观察工具</p>
+      </div>
+      <div class="search-input">
+        <form id="search-form" method="get" action='/search'>
+          <input id="input-text" type="text" placeholder="魔兽世界" />
+          <input id="submit" type="submit" value="搜索" />
+        </form>
+      </div>
+       <div class="search-box-footer">
+        <span>昨日跟踪222个贴吧</span>
+        <span>昨日増贴343243</span>
+        <span>昨日増粉23434</span>
+      </div>
+    </div>
+</div>
+<script>
+  $(function(){
+    $("#search-form").submit(function(e){
+      e.preventDefault();
+      var kw = $('#input-text').val();
+      if(!kw){
+        $('#input-text').focus();
+        return false;
+      }
+      var url='/search/'+encodeURIComponent(kw);
+      window.location=url;
+      return false;
+    });
+  });
+  $('#submit').focus(function() { 
+     $('.tit1').addClass("tit1_focus");
+     $('.search-box').addClass("search-box_focus");
+     $('.search-input').addClass("search-input_focus");
+     $('.pg-canvas').remove();
+     $('body').addClass("body");
+     $('.result-item').addClass("result-item-focus");
+      $('.plot-wrap').addClass("plot-wrap-focus");
+  }); 
+ 
+</script>
+</body>
+</html>
