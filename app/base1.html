@@ -1,6 +1,6 @@
 <!-- {%load staticfiles%} -->
 <!DOCTYPE html>
-<html  id="particles">
+<html>
 <head>
   <meta charset="utf8" />
   <title>{%block title%}AppBug{%endblock%}</title>
@@ -14,13 +14,13 @@
   {%block title%}搜索{{ kw }}的结果-AppBug{%endblock%}
   {%block search_box_footer%}{%endblock%}
 </head>
-<body>
+<body class="body">
 <div class="wrapper">
-    <div class="search-box">
-      <div class="tit1">
+    <div class="search-box search-box_focus">
+      <div class="tit1 tit1_focu">
         <p class="logon">贴吧观察工具</p>
       </div>
-      <div class="search-input">
+      <div class="search-input search-input_focus">
         <form id="search-form" method="get" action='/search'>
           <input id="input-text" type="text" placeholder="魔兽世界" value="{{ tb.name }}{{ kw }}" />
           <input id="submit" type="submit" value="搜索" />
@@ -32,18 +32,6 @@
         <span>昨日増粉{{everyday_like}}</span>
       </div>
     </div>
-     <div class="result">
-      {% for tieba in query%}
-        <div class="result-item">
-            <span class="result-number">1</span>
-            <span class="result-title"><a href="/info/{{tieba.id}}">{{tieba.name}}</a></span>
-            <span class="result-desc">{{tieba.desc}}</span>
-            <span class="result-read">--></span>
-        </div>  
-        {% empty %} 
-        <p class="info">没有你搜的贴吧，搜下其他的吧！</p>     
-    </div>
-    {% endblock %}
 </div>
 <script>
   $(function(){

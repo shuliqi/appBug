@@ -1,87 +1,16 @@
-    <div class="result">
-        <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>
-        <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>
-        <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>
-                <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>
-        <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>
-        <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>
-        <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>
-        <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>
-        <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>
-        <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>
-        <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>
-        <div class="result-item">
-            <span class="result-number">1</span>
-           <!--  <span class="result-timer">时间：12:23</span> -->
-            <span class="result-title"><a href="/info/{{tieba.id}}">我是任泽熙任</a></span>
-            <span class="result-desc">让我们在这里，一起谈论关于电影的所感所想</span>
-            <span class="result-read">--></span>
-        </div>        
-    </div>
-    <p class="info">没有你搜的贴吧，搜下其他的吧！</p>
+{% extends 'base1.html'%}
+{%block title%}搜索{{ kw }}的结果-AppBug{%endblock%}
+{%block search_box_footer%}{%endblock%}
+{% block body %}
+<div class="result">
+  {% for tieba in query%}
+    <div class="result-item result-item-focus">
+        <span class="result-number">1</span>
+        <span class="result-title"><a href="/info/{{tieba.id}}">{{tieba.name}}</a></span>
+        <span class="result-desc">{{tieba.desc}}</span>
+        <span class="result-read">--></span>
+    </div>  
+    {% empty %} 
+    <p class="info">没有你搜的贴吧，搜下其他的吧！</p>     
+</div>
+{% endblock %}
