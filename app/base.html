@@ -10,7 +10,7 @@
   <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script>
   <script type='text/javascript' src='js/jquery.particleground.min.js'></script>
   <script type='text/javascript' src='js/demo.js'></script>
-<!--   {%block head%}{%endblock%} -->
+  {%block head%}{%endblock%}
 </head>
 <body>
 
@@ -21,41 +21,56 @@
       </div>
       <div class="search-input">
         <form id="search-form" method="get" action='/search'>
-          <input id="input-text" type="text" placeholder="魔兽世界" />
+          <input id="input-text" type="text" placeholder="魔兽世界" value="{{ tb.name }}{{ kw }}" />
           <input id="submit" type="submit" value="搜索" />
         </form>
       </div>
        <div class="search-box-footer">
-        <span>昨日跟踪222个贴吧</span>
-        <span>昨日増贴343243</span>
-        <span>昨日増粉23434</span>
+        <span>昨日跟踪{{everyday_crawl}}个贴吧</span>,
+        <span>昨日増贴{{everyday_post}}</span>,
+        <span>昨日増粉{{everyday_like}}</span>
       </div>
     </div>
 </div>
 <script>
   $(function(){
     $("#search-form").submit(function(e){
-      e.preventDefault();
+      stopDefault( e );
+      console.log("进入summit");
       var kw = $('#input-text').val();
       if(!kw){
+         console.log("没有搜索数据");
         $('#input-text').focus();
-        return false;
+
+      }else{
+        console.log("有搜索数据");
+        var url='/search/'+encodeURIComponent(kw);
+        window.location=url;
       }
-      var url='/search/'+encodeURIComponent(kw);
-      window.location=url;
-      return false;
     });
   });
-  $('#submit').focus(function() { 
-     $('.tit1').addClass("tit1_focus");
-     $('.search-box').addClass("search-box_focus");
-     $('.search-input').addClass("search-input_focus");
-     $('.pg-canvas').remove();
-     $('body').addClass("body");
-     $('.result-item').addClass("result-item-focus");
+  window.onlod =  function () {
+      alert("开始执行特效");
+      console.log("开始触动数据");
+      $('.tit1').addClass("tit1_focus");
+      console.log("开始触动数据");
+      $('.search-box').addClass("search-box_focus");
+      $('.search-input').addClass("search-input_focus");
+      $('.pg-canvas').remove();
+      $('body').addClass("body");
+      $('.result-item').addClass("result-item-focus");
       $('.plot-wrap').addClass("plot-wrap-focus");
-  }); 
- 
+  }
+   //阻止浏览器的默认行为 
+   function stopDefault( e ) { 
+    //阻止默认浏览器动作(W3C) 
+    if ( e && e.preventDefault ) 
+        e.preventDefault(); 
+    //IE中阻止函数器默认动作的方式 
+    else
+        window.event.returnValue = false; 
+    return false; 
+   }
 </script>
 </body>
 </html>
